@@ -25,7 +25,7 @@ export default function HNComment({ comment }: { comment: HNComment }) {
   let decodedText = decode(text);
 
   return (
-    <article className='mb-2'>
+    <article className='mb-4'>
       <CollapsedText text={decodedText} length={100} />
       <div className='flex justify-between'>
         <p>

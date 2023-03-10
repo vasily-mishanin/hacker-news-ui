@@ -3,7 +3,7 @@ import { ErrorBoundaryProps, Story } from '~/types/types';
 
 export default function NewsItem({ newsItem }: { newsItem: Story }) {
   return (
-    <article className='p-2 w-[350px] rounded bg-green-200 shadow-md'>
+    <article className='p-2  rounded bg-green-200 shadow-md w-[350px] sm:w-[450px] lg:w-[550px]'>
       <h1 className='text-m font-semibold text-left mb-2'>{newsItem.title}</h1>
       <div className='flex gap-1 justify-between items-center'>
         <Score score={newsItem.score} />
@@ -16,7 +16,7 @@ export default function NewsItem({ newsItem }: { newsItem: Story }) {
 
 export function ErrorBoundary({ error }: ErrorBoundaryProps) {
   return (
-    <article className='p-2 w-[350px] rounded bg-green-200 shadow-md'>
+    <article className='p-2  rounded bg-green-200 shadow-md w-[350px] sm:w-[450px] lg:w-[550px]'>
       <h1 className='text-m font-semibold text-left mb-2'>
         Something wrong with this news item
       </h1>

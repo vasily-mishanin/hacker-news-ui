@@ -8,7 +8,9 @@ export default function Comments() {
 
   return (
     <section>
-      <h2>Comments</h2>
+      <h2 className='mb-2'>
+        Comments <hr />
+      </h2>
       {comments.map((comment) => (
         <HNComment key={comment.by} comment={comment} />
       ))}

@@ -20,7 +20,6 @@ export async function loader({ params }: LoaderArgs) {
   const newsItemId = params.newsItemId;
   if (newsItemId) {
     try {
-      console.log('LOADER');
       const newsItem = await fetchNewsItem(newsItemId);
       let comments: HNComment[] = []; // may be no comments
 
@@ -29,7 +28,6 @@ export async function loader({ params }: LoaderArgs) {
       }
 
       if (newsItem && comments) {
-        console.log('LOADER', comments);
         return { newsItem, comments };
       }
     } catch (err) {
@@ -44,11 +42,12 @@ export function ErrorBoundary({ error }: ErrorBoundaryProps) {
   return (
     <>
       <BaseHeader withBackBtn />
-      <article className='p-2 w-[350px] rounded bg-green-200 shadow-md'>
-        <h1 className='text-m font-semibold text-left mb-2'>
-          Something wrong with this news item
+
+      <section className='error-message'>
+        <h1 className='text-center w-[350px] sm:w-[450px] lg:w-[550px]'>
+          Something wrong with fetching this news item...
         </h1>
-      </article>
+      </section>
     </>
   );
 }

@@ -28,7 +28,7 @@ export default function Index() {
   return (
     <>
       <header className='sticky-header flex justify-center mb-1 w-[100%]'>
-        <div className='flex p-5 text-center justify-between items-center w-[350px]'>
+        <div className='flex p-5 text-center justify-between items-center w-[350px] sm:w-[450px] lg:w-[550px]'>
           <LogoLink />
           <button className='p-2' onClick={() => revalidate()}>
             <ArrowPathIcon className=' w-8 p-1 text-white bg-green-800 rounded' />

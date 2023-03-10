@@ -1,4 +1,5 @@
 import type { MetaFunction } from '@remix-run/node';
+
 import {
   Links,
   LiveReload,
@@ -46,9 +47,14 @@ export function ErrorBoundary({ error }: ErrorBoundaryProps) {
       </head>
       <body>
         <BaseHeader />
-        <h1 className='sm:w-[100%] w-[350px] text-center'>
-          Something went wrong during fetching a news feed
-        </h1>
+        <section className='error-message'>
+          <h1 className='text-center w-[350px] sm:w-[450px] lg:w-[550px]'>
+            Something went wrong during fetching a news feed{' '}
+          </h1>
+          <p className='text-center w-[350px] sm:w-[450px] lg:w-[550px]'>
+            Please, try again later
+          </p>
+        </section>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

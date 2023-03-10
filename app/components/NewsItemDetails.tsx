@@ -11,7 +11,7 @@ export default function NewsItemDetails() {
   console.log('NewsItemDetails :', comments);
 
   return (
-    <article className='p-5 flex flex-col gap-2 w-[350px]'>
+    <article className='news-details p-5 flex flex-col gap-2 w-[350px] sm:w-[450px] lg:w-[550px]'>
       <header>
         <h1 className='mb-2 text-xl'>{newsItem.title}</h1>
         {newsItem.url ? (
