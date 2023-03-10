@@ -1,9 +1,10 @@
-import { ErrorBoundaryComponent } from '@remix-run/node';
 import { useEffect, useState } from 'react';
 import { fetchComments } from '~/loaders/newsLoaders';
 import { ErrorBoundaryProps, HNComment } from '~/types/types';
-import { decode, getCuttedString } from '~/utils/helpers';
+import { decode } from '~/utils/helpers';
 import CollapsedText from './CollapsedText';
+import { ArrowUpIcon } from '@heroicons/react/24/outline';
+import BadgeComments from './BadgeComments';
 
 export default function HNComment({ comment }: { comment: HNComment }) {
   const { text, date, by, kids } = comment;
@@ -25,31 +26,24 @@ export default function HNComment({ comment }: { comment: HNComment }) {
 
   return (
     <article className='mb-2'>
-      {/* <p className='text-sm'>
-        {decodedText && decodedText.length > 0 ? (
-          getCuttedString(decodedText, 300)
-        ) : (
-          <span className='text-red-300'>no comment provided</span>
-        )}
-      </p> */}
       <CollapsedText text={decodedText} length={100} />
       <div className='flex justify-between'>
         <p>
-          <span className='text-xs'>{date}</span>
-          <span className='text-xs ml-4'>{by}</span>
+          <span className='text-xs bold'>{by}</span>
+          <span className='text-xs ml-4 opacity-40'>{date}</span>
         </p>
         {kids && kids.length > 0 && (
           <span
             className='cursor-pointer'
             onClick={() => setShowSubcomments(!showSubcomments)}
           >
-            💬
+            <BadgeComments clickable />
           </span>
         )}
       </div>
       {showSubcomments && (
         <section className='ml-3'>
-          Subcomments
+          <ArrowUpIcon className='w-4' />
           {subcomments?.map((subcomment) => (
             <HNComment key={subcomment.id} comment={subcomment} />
           ))}

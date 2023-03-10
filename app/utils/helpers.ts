@@ -7,6 +7,7 @@ export function decode(text: string | Object) {
     console.log(decodedText);
     return decodedText;
   }
+  return '';
 }
 
 export function getCuttedString(str: string, length: number) {

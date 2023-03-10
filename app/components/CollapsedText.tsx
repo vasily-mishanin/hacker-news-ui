@@ -12,16 +12,18 @@ export default function CollapsedText({
   const hiddenText = text.slice(length);
   return (
     <p
-      className='text-green text-xs cursor-pointer'
+      className='text-green text-s cursor-pointer'
       onClick={() => setShowHidden(!showHidden)}
     >
       {shownText}
       {!showHidden && hiddenText && (
-        <span className='text-gray-500'>...read more</span>
+        <span className='text-green-400 text-xs'>...read more</span>
       )}
 
       {showHidden && <span>{hiddenText} </span>}
-      {showHidden && <span className='text-gray-500'>...show less</span>}
+      {showHidden && (
+        <span className='text-green-300 text-xs'>...show less</span>
+      )}
     </p>
   );
 }
