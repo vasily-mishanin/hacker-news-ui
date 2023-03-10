@@ -4,7 +4,7 @@ This is a solution for test challenge from BR Group for applicants on "Middle Fr
 Start: 2023/03/07  
 Finish: 2023/03/10
 
-- Solution Deploy on Netlify: [ https://coruscating-toffee-4112dc.netlify.app/](https://coruscating-toffee-4112dc.netlify.app/)
+- Solution Deploy on Netlify: [https://soft-rabanadas-2d7bc8.netlify.app/](https://soft-rabanadas-2d7bc8.netlify.app/)
 
 To run locally:
 
