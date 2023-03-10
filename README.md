@@ -2,9 +2,12 @@
 
 This is a solution for test challenge from BR Group for applicants on "Middle Frontend React"
 
-- Solution Deploy: [GitHub](https://github.com/vasily-mishanin/hacker-news-ui)
+Start: 2023/03/07  
+Finish: 2023/03/10
 
-To start locally:
+- Solution Deploy: [Netlify](https://coruscating-toffee-4112dc.netlify.app/)
+
+To run locally:
 
 - download or fork=>pull
 - npm install
@@ -28,11 +31,12 @@ News Item Details Page
 ⁃ link to the news item source  
  ⁃ title  
  ⁃ date  
- ⁃ author  
- - comments counter - comments tree
-[+] Root comments download with the page, nested ones - on root comment click
-[+] The page should contain a button to refresh comments list
-[+] The page should contain a button to move back to list of news feed
+ ⁃ author
+
+- comments counter - comments tree
+  [+] Root comments download with the page, nested ones - on root comment click
+  [+] The page should contain a button to refresh comments list
+  [+] The page should contain a button to move back to list of news feed
 
 ### Links
 
