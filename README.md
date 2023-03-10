@@ -17,6 +17,7 @@ To run locally:
 ##### The challenge requirements
 
 Main Page
+
 [+] Display last 100 news sorted by date  
 [+] Each news item contains:  
 ⁃ title  
@@ -28,6 +29,7 @@ Main Page
 [+] Refresh by click on the refresh button
 
 News Item Details Page
+
 [+] Contains:
 ⁃ link to the news item source  
 ⁃ title  
