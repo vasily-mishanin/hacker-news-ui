@@ -9,12 +9,9 @@ module.exports = {
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "build/index.js",
   // publicPath: "/build/",
-  // When running locally in development mode, we use the built-in remix
-  // server. This does not understand the vercel lambda module format,
-  // so we default back to the standard build output.
-  server: process.env.NODE_ENV === 'development' ? undefined : './server.js',
-  serverBuildPath: 'api/index.js',
-  // appDirectory: "app",
-  // assetsBuildDirectory: "public/build",
-  // publicPath: "/build/",
+  server:
+    process.env.NETLIFY || process.env.NETLIFY_LOCAL
+      ? './server.js'
+      : undefined,
+  serverBuildPath: '.netlify/functions-internal/server.js',
 };
