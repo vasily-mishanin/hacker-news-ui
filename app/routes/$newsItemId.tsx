@@ -1,22 +1,14 @@
 import { LoaderArgs } from '@remix-run/node';
 import { Link } from '@remix-run/react';
+import BaseHeader from '~/components/BaseHeader';
 import NewsItemDetails from '~/components/NewsItemDetails';
 import { fetchNewsItem, fetchComments } from '~/loaders/newsLoaders';
-import { HNComment, NewsItem } from '~/types/types';
+import { ErrorBoundaryProps, HNComment, NewsItem } from '~/types/types';
 
 export default function NewsItemDetailsPage() {
   return (
     <>
-      <header className='sticky-header flex justify-center mb-1 w-[100%]'>
-        <div className='flex p-5 text-center justify-between items-center w-[350px]'>
-          <h1 className=''>
-            <span className='text-green-800'>Hacker</span>{' '}
-            <span className='text-green-600'>News</span>
-          </h1>
-          <Link to='/'>Back to List</Link>
-        </div>
-      </header>
-
+      <BaseHeader withBackBtn />
       <main>
         <NewsItemDetails />
       </main>
@@ -46,4 +38,17 @@ export async function loader({ params }: LoaderArgs) {
       }
     }
   }
+}
+
+export function ErrorBoundary({ error }: ErrorBoundaryProps) {
+  return (
+    <>
+      <BaseHeader withBackBtn />
+      <article className='p-2 w-[350px] rounded bg-green-200 shadow-md'>
+        <h1 className='text-m font-semibold text-left mb-2'>
+          Something wrong with this news item
+        </h1>
+      </article>
+    </>
+  );
 }

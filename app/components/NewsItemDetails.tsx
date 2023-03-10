@@ -1,6 +1,6 @@
 import { LoaderArgs } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import { NewsItem, Story } from '~/types/types';
+import { ErrorBoundaryProps, NewsItem, Story } from '~/types/types';
 import { getCuttedString } from '~/utils/helpers';
 import BadgeComments from './BadgeComments';
 import Comments from './Comments';

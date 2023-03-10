@@ -60,7 +60,7 @@ export default function HNComment({ comment }: { comment: HNComment }) {
 export function ErrorBoundary({ error }: ErrorBoundaryProps) {
   return (
     <section>
-      Comment is broken <p>{error.message}</p>
+      <p> Broken comment </p>
     </section>
   );
 }

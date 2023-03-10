@@ -1,7 +1,32 @@
-import { HNComment, Story } from '~/types/types';
+import { HNComment, IDs, Story } from '~/types/types';
 import { getDateString } from '~/utils/helpers';
 
 const baseURL = 'https://hacker-news.firebaseio.com/v0/';
+const newStoriesQuery = 'newstories.json?print=pretty';
+
+export async function fetchNewsFeed() {
+  const urlLatestNewsIds = `${baseURL}${newStoriesQuery}`;
+  try {
+    const latestNewsIds = await fetch(urlLatestNewsIds);
+    const newsIds = ((await latestNewsIds.json()) as IDs).slice(0, 100);
+    const latestNewsResponces = await Promise.all(
+      newsIds.map((itemId) =>
+        fetch(`${baseURL}item/${itemId}.json?print=pretty`)
+      )
+    );
+    const latestNews = (await Promise.all(
+      latestNewsResponces.map((res) => res.json())
+    )) as Story[];
+
+    const newsDataPrepared = addDateStringToAll(latestNews);
+    return newsDataPrepared;
+  } catch (err) {
+    console.log('CATCH');
+    if (err instanceof Error) {
+      console.warn(err.message);
+    }
+  }
+}
 
 export async function fetchNewsItem(newsItemId: string) {
   try {
@@ -40,6 +65,7 @@ export async function fetchComments(commentsIds: number[]) {
   }
 }
 
+//specific helper
 export function addDateStringToAll(items: Story[] | HNComment[]) {
   return items.map((item) => {
     item.date = getDateString(item.time);

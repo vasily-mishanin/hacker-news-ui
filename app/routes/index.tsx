@@ -2,7 +2,6 @@ import {
   Links,
   LiveReload,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
@@ -11,11 +10,9 @@ import { LoaderArgs, MetaFunction } from '@remix-run/node';
 import { useEffect } from 'react';
 import NewsList from '~/components/NewsList';
 import { useRevalidate } from '~/hooks/useRevalidate';
-import { addDateStringToAll } from '~/loaders/newsLoaders';
+import { addDateStringToAll, fetchNewsFeed } from '~/loaders/newsLoaders';
 import { ErrorBoundaryProps, IDs, Story } from '~/types/types';
 import BaseHeader from '~/components/BaseHeader';
-const baseURL = 'https://hacker-news.firebaseio.com/v0/';
-const newStoriesQuery = 'newstories.json?print=pretty';
 const REFRESH_TIME = 60 * 1000;
 
 export const meta: MetaFunction = () => ({
@@ -48,6 +45,7 @@ export default function Index() {
           </button>
         </div>
       </header>
+
       <main>
         <NewsList />
       </main>
@@ -56,47 +54,6 @@ export default function Index() {
 }
 
 export async function loader({ request, params }: LoaderArgs) {
-  const urlLatestNewsIds = `${baseURL}${newStoriesQuery}`;
-  try {
-    const latestNewsIds = await fetch(urlLatestNewsIds);
-    const newsIds = ((await latestNewsIds.json()) as IDs).slice(0, 100);
-    const latestNewsResponces = await Promise.all(
-      newsIds.map((itemId) =>
-        fetch(`${baseURL}ite/${itemId}.json?print=pretty`)
-      )
-    );
-    const latestNews = (await Promise.all(
-      latestNewsResponces.map((res) => res.json())
-    )) as Story[];
-
-    const newsDataPrepared = addDateStringToAll(latestNews);
-    return newsDataPrepared;
-  } catch (err) {
-    console.log('CATCH');
-    if (err instanceof Error) {
-      console.warn(err.message);
-    }
-  }
-}
-
-export function ErrorBoundary({ error }: ErrorBoundaryProps) {
-  console.log(error);
-  return (
-    <html lang='en'>
-      <head>
-        <Meta />
-        <Links />
-        <title>Error</title>
-      </head>
-      <body>
-        <BaseHeader />
-        <h1 className='xs:w-[100%] w-[350px]'>
-          Something went wrong during fetching a news feed
-        </h1>
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
-    </html>
-  );
+  const data = await fetchNewsFeed();
+  return data;
 }
