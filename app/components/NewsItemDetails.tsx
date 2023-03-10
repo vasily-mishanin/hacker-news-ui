@@ -7,8 +7,6 @@ import Comments from './Comments';
 
 export default function NewsItemDetails() {
   const { newsItem, comments } = useLoaderData<NewsItem>();
-  console.log('NewsItemDetails :', newsItem);
-  console.log('NewsItemDetails :', comments);
 
   return (
     <article className='news-details p-5 flex flex-col gap-2 w-[350px] sm:w-[450px] lg:w-[550px]'>
