@@ -8,7 +8,11 @@ export default function BaseHeader({ withBackBtn }: { withBackBtn?: boolean }) {
           <span className='text-green-800'>Hacker</span>{' '}
           <span className='text-green-600'>News</span>
         </h1>
-        {withBackBtn && <Link to='/'>Back to List</Link>}
+        {withBackBtn && (
+          <Link className='bg-green-500 p-1 rounded-sm' to='/'>
+            Back to List
+          </Link>
+        )}
       </div>
     </header>
   );
