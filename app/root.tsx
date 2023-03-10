@@ -37,7 +37,6 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: ErrorBoundaryProps) {
-  console.log(error);
   return (
     <html lang='en'>
       <head>

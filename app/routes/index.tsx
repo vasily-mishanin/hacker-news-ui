@@ -14,11 +14,9 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function Index() {
-  console.log('INDEX');
   const revalidate = useRevalidate();
 
   useEffect(() => {
-    console.log('INDEX-EFFECT');
     const updateInterval = setInterval(revalidate, REFRESH_TIME);
     return () => {
       clearInterval(updateInterval);

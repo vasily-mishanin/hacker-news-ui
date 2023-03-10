@@ -21,7 +21,6 @@ export async function fetchNewsFeed() {
     const newsDataPrepared = addDateStringToAll(latestNews);
     return newsDataPrepared;
   } catch (err) {
-    console.log('CATCH');
     if (err instanceof Error) {
       console.warn(err.message);
     }
@@ -38,7 +37,6 @@ export async function fetchNewsItem(newsItemId: string) {
     newsItem.date = getDateString(newsItem.time);
     return newsItem;
   } catch (err) {
-    console.log('CATCH');
     if (err instanceof Error) {
       console.warn(err.message);
     }
@@ -58,7 +56,6 @@ export async function fetchComments(commentsIds: number[]) {
     const commentsPrepared = addDateStringToAll(rootComments) as HNComment[];
     return commentsPrepared;
   } catch (err) {
-    console.log('CATCH');
     if (err instanceof Error) {
       console.warn(err.message);
     }

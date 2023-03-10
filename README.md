@@ -4,7 +4,13 @@ This is a solution for test challenge from BR Group for applicants on "Middle Fr
 
 - Solution Deploy: [GitHub](https://github.com/vasily-mishanin/hacker-news-ui)
 
-#### The challenge
+To start locally:
+
+- download or fork=>pull
+- npm install
+- npm run dev
+
+#### The challenge requirements
 
 Main Page
 [+] Display last 100 news sorted by date
