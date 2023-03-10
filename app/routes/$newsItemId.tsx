@@ -1,7 +1,8 @@
 import { LoaderArgs } from '@remix-run/node';
 import { Link } from '@remix-run/react';
 import NewsItemDetails from '~/components/NewsItemDetails';
-import { fetchNewsItem, fetchRootComments } from '~/loaders/newsLoaders';
+import { fetchNewsItem, fetchComments } from '~/loaders/newsLoaders';
+import { HNComment, NewsItem } from '~/types/types';
 
 export default function NewsItemDetailsPage() {
   return (
@@ -24,13 +25,19 @@ export default function NewsItemDetailsPage() {
 }
 
 export async function loader({ params }: LoaderArgs) {
-  const { newsItemId } = params;
+  const newsItemId = params.newsItemId;
   if (newsItemId) {
     try {
+      console.log('LOADER');
       const newsItem = await fetchNewsItem(newsItemId);
-      const commentsIds = newsItem?.kids;
-      if (newsItem && commentsIds) {
-        const comments = await fetchRootComments(commentsIds);
+      let comments: HNComment[] = []; // may be no comments
+
+      if (newsItem?.kids) {
+        comments = (await fetchComments(newsItem?.kids)) || [];
+      }
+
+      if (newsItem && comments) {
+        console.log('LOADER', comments);
         return { newsItem, comments };
       }
     } catch (err) {
@@ -39,5 +46,4 @@ export async function loader({ params }: LoaderArgs) {
       }
     }
   }
-  return newsItemId;
 }

@@ -20,7 +20,7 @@ export async function fetchNewsItem(newsItemId: string) {
   }
 }
 
-export async function fetchRootComments(commentsIds: number[]) {
+export async function fetchComments(commentsIds: number[]) {
   try {
     const rootCommentsResponces = await Promise.all(
       commentsIds.map((commentId) =>
@@ -30,7 +30,7 @@ export async function fetchRootComments(commentsIds: number[]) {
     const rootComments = (await Promise.all(
       rootCommentsResponces.map((res) => res.json())
     )) as HNComment[];
-    const commentsPrepared = addDateStringToAll(rootComments);
+    const commentsPrepared = addDateStringToAll(rootComments) as HNComment[];
     return commentsPrepared;
   } catch (err) {
     console.log('CATCH');

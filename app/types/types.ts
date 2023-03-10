@@ -24,3 +24,12 @@ export interface HNComment {
   type: 'comment';
   date?: string;
 }
+
+export interface NewsItem {
+  newsItem: Story;
+  comments: HNComment[];
+}
+
+export type ErrorBoundaryProps = {
+  error: Error;
+};

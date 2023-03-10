@@ -1,3 +1,14 @@
+const cheerio = require('cheerio');
+
+export function decode(text: string | Object) {
+  if (typeof text === 'string' && text.length > 0) {
+    const $ = cheerio.load(text);
+    const decodedText = $.root().text().trim();
+    console.log(decodedText);
+    return decodedText;
+  }
+}
+
 export function getCuttedString(str: string, length: number) {
   return str.slice(0, length) + '...';
 }
